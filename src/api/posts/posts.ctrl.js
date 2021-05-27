@@ -8,9 +8,33 @@ const posts = [
   },
 ];
 
-exports.write = ctx => {
+// 글쓰기
+exports.write = (ctx) => {
   const { title, body } = ctx.request.body;
   postId += 1;
 
   const post = { id: postId, title, body };
+  posts.push(post);
+  ctx.body = post;
+};
+
+// 포스트 목록 조회
+// GET /api/posts
+exports.list = (ctx) => {
+  ctx.body = posts;
+};
+
+// 특정 글 조회
+// GET /api/posts/:id
+exports.read = (ctx) => {
+  const { id } = ctx.params;
+
+  const post = posts.find((p) => p.id.toString() === id);
+
+  if (!post) {
+    ctx.status = 404;
+    ctx.body = {
+      message: '포스트가 존재하지 않습니다.',
+    };
+  }
 };
