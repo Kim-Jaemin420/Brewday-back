@@ -24,6 +24,7 @@
   },
   "scripts": {
     "start": "node src",
-    "start:dev": "nodemon --watch src/ src/index.js"
+    "start:dev": "nodemon --watch src/ src/index.js",
+    "heroku-postbuild": "npx webpack"
   }
 }
