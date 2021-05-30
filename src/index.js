@@ -9,6 +9,10 @@ const router = new Router();
 
 router.use('/api', api.routes());
 
+router.get('/', (ctx) => {
+  ctx.body = '홈';
+});
+
 app.use(bodyParser());
 
 app.use(router.routes()).use(router.allowedMethods());
