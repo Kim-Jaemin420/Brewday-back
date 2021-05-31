@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Kim-Jaemin420/Brewday-back#readme",
   "dependencies": {
     "eslint-config-prettier": "^8.3.0",
+    "fs": "0.0.1-security",
     "koa": "^2.13.1",
     "koa-bodyparser": "^4.3.0",
     "koa-router": "^10.0.0",
@@ -30,6 +31,6 @@
   "scripts": {
     "start": "node src",
     "start:dev": "nodemon --watch src/ src/index.js",
-    "heroku-postbuild": "npx webpack"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   }
 }
