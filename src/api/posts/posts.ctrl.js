@@ -36,5 +36,26 @@ exports.read = (ctx) => {
     ctx.body = {
       message: '포스트가 존재하지 않습니다.',
     };
+
+    return;
   }
+  ctx.body = post;
+};
+
+// 특정 포스트 제거
+// DELETE /api/posts/:id
+exports.remove = (ctx) => {
+  const { id } = ctx.params;
+
+  const index = posts.findIndex((p) => p.id.toString() === id);
+  if (index === -1) {
+    ctx.status = 404;
+    ctx.body = {
+      message: '포스트가 존재하지 않습니다.',
+    };
+    return;
+  }
+
+  posts.splice(index, 1);
+  ctx.status = 204;
 };
